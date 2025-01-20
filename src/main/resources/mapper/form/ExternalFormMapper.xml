@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ExternalFormMapper">
+
+    <resultMap id="formDetailMap" type="com.eorion.bo.enhancement.externallauncher.domain.FormDetailDto">
+        <result column="ID" javaType="STRING" property="id"/>
+        <result column="FROM_DATA" javaType="STRING" property="fromData"/>
+    </resultMap>
+
+    <select id="selectExternalFormById" resultMap="formDetailMap" parameterType="map">
+        select ID, FROM_DATA from BPEZ_FORM
+        <where>
+            DELETE_FG = '0'
+            <if test="id != null and id != ''">
+                and ID = #{id}
+            </if>
+        </where>
+        limit 1
+    </select>
+
+</mapper>

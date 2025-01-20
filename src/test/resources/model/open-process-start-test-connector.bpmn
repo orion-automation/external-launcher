@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+                  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+                  xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
+                  xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+                  xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1w0pm2g"
+                  targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.10.0"
+                  modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.19.0">
+    <bpmn:process id="Process_test_read_bpmn_model_instance" isExecutable="true">
+        <bpmn:extensionElements>
+            <camunda:properties>
+                <camunda:property name="publicAccessEnabled" value="true"/>
+            </camunda:properties>
+        </bpmn:extensionElements>
+        <bpmn:startEvent id="StartEvent_1" camunda:formKey="1721067036800655361">
+            <bpmn:outgoing>Flow_11s1kne</bpmn:outgoing>
+        </bpmn:startEvent>
+        <bpmn:sequenceFlow id="Flow_11s1kne" sourceRef="StartEvent_1" targetRef="Activity_1hblmwa"/>
+        <bpmn:userTask id="Activity_1hblmwa" name="商机信息确认">
+            <bpmn:incoming>Flow_11s1kne</bpmn:incoming>
+            <bpmn:outgoing>Flow_1j3lnji</bpmn:outgoing>
+        </bpmn:userTask>
+        <bpmn:endEvent id="Event_0lopiy9">
+            <bpmn:incoming>Flow_1otmh36</bpmn:incoming>
+        </bpmn:endEvent>
+        <bpmn:serviceTask id="Activity_0y3inbq" name="实时天气">
+            <bpmn:extensionElements>
+                <camunda:connector>
+                    <camunda:inputOutput>
+                        <camunda:inputParameter name="url">
+                            https://devapi.qweather.com/v7/weather/now?key=1e6107fe0fbf41e18601b50d92831f0c&amp;location=${desLocationId}
+                        </camunda:inputParameter>
+                        <camunda:inputParameter name="method">GET</camunda:inputParameter>
+                        <camunda:inputParameter name="headers">
+                            <camunda:map>
+                                <camunda:entry key="Content-Type">application/json</camunda:entry>
+                            </camunda:map>
+                        </camunda:inputParameter>
+                        <camunda:outputParameter name="currentWeatherStatus">
+                            <camunda:script scriptFormat="JavaScript">var responseBody =
+                                connector.getVariable('response');
+                                S(responseBody);
+                            </camunda:script>
+                        </camunda:outputParameter>
+                    </camunda:inputOutput>
+                    <camunda:connectorId>http-connector</camunda:connectorId>
+                </camunda:connector>
+            </bpmn:extensionElements>
+            <bpmn:incoming>Flow_1j3lnji</bpmn:incoming>
+            <bpmn:outgoing>Flow_1otmh36</bpmn:outgoing>
+        </bpmn:serviceTask>
+        <bpmn:sequenceFlow id="Flow_1j3lnji" sourceRef="Activity_1hblmwa" targetRef="Activity_0y3inbq"/>
+        <bpmn:sequenceFlow id="Flow_1otmh36" sourceRef="Activity_0y3inbq" targetRef="Event_0lopiy9"/>
+    </bpmn:process>
+    <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+        <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_test_read_bpmn_model_instance">
+            <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+                <dc:Bounds x="172" y="102" width="36" height="36"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="Activity_1qxk021_di" bpmnElement="Activity_1hblmwa">
+                <dc:Bounds x="250" y="80" width="100" height="80"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="Event_0lopiy9_di" bpmnElement="Event_0lopiy9">
+                <dc:Bounds x="552" y="102" width="36" height="36"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="BPMNShape_14dy637" bpmnElement="Activity_0y3inbq">
+                <dc:Bounds x="400" y="80" width="100" height="80"/>
+                <bpmndi:BPMNLabel/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNEdge id="Flow_11s1kne_di" bpmnElement="Flow_11s1kne">
+                <di:waypoint x="208" y="120"/>
+                <di:waypoint x="250" y="120"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="Flow_1j3lnji_di" bpmnElement="Flow_1j3lnji">
+                <di:waypoint x="350" y="120"/>
+                <di:waypoint x="400" y="120"/>
+            </bpmndi:BPMNEdge>
+            <bpmndi:BPMNEdge id="Flow_1otmh36_di" bpmnElement="Flow_1otmh36">
+                <di:waypoint x="500" y="120"/>
+                <di:waypoint x="552" y="120"/>
+            </bpmndi:BPMNEdge>
+        </bpmndi:BPMNPlane>
+    </bpmndi:BPMNDiagram>
+</bpmn:definitions>

@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:camunda-integration;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'classpath:/init/form.sql'
+    driver-class-name: org.h2.Driver
+camunda:
+  bpm:
+    history-level: full
+    generic-properties:
+      properties:
+        history-time-to-live: P365D
+        enforce-history-time-to-live: false
