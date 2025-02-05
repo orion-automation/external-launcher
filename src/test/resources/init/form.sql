@@ -1,4 +1,4 @@
-create table if not exists BPEZ_FORM
+create table if not exists ENHACEMENT_FORM
 (
     ID
     varchar
@@ -31,6 +31,6 @@ create table if not exists BPEZ_FORM
     DELETE_FG smallint default 0
     );
 
-MERGE INTO bpez_form
+MERGE INTO ENHACEMENT_FORM
     (id, name_txt, tenant_txt, type_txt, from_data, created_ts, updated_ts, create_by_txt, updated_by_txt, delete_fg)
     VALUES ('324234234234', 'form1', NULL, 'from', '[{"key": "value"}]', NULL, NULL, NULL, NULL, 0);

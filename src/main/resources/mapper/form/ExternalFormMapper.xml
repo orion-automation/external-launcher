@@ -8,11 +8,11 @@
     </resultMap>
 
     <select id="selectExternalFormById" resultMap="formDetailMap" parameterType="map">
-        select ID, FROM_DATA from BPEZ_FORM
+        select ID, FROM_DATA from ENHACEMENT_FORM
         <where>
             DELETE_FG = '0'
             <if test="id != null and id != ''">
-                and ID = #{id}
+                and DEFINITION_KEY_TXT = #{id}
             </if>
         </where>
         limit 1
