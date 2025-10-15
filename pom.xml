@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.eorion.bo.enhancement</groupId>
     <artifactId>external-launcher</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
     <name>external launcher spring boot starter</name>
     <description>Process instances and user tasks launcher outside of Camunda Platform</description>
     <url>https://github.com/orion-automation/external-launcher</url>
